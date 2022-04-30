@@ -1,5 +1,22 @@
 # Getting Started with Create React App
 
+This application was designed using the react-places-autocomplete api to allow a user to search for any starting and destination address taking advantage of google's autocomplete to provide a dropdown with a selection of complete addresses.
+
+The app uses an async loader in the Container class to connect to the Google API and uses an environmental variable for security.
+
+Once the user selects a starting point and a destination, the app uses the starting latitude and ending longitude to display the Calculate Distance component. This component takes in the necessary props from the above noted address search and uses the DistanceMatrixService from hte react-google-maps API to query/fetch the response from googl maps.
+
+The distance and driving time are displayed below with an option to add a trip name and save to local storage using the UseEffect hook. This allows a user to refresh the page and still be able to access the saved trips.
+
+To run this app:
+run npm init
+npm start (dependencies are all noted in the package.json file)
+
+\*\*
+Please note I did not focus much on CSS at all, I just played a bit and got familiar with the API's. I focussed more on the logic portion of this application.
+
+...and here is all the standard React info:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
