@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LocationSearch from "./LocationSearch";
-import scriptLoader from "react-async-script-loader";
+import scriptLoader from "react-async-script-loader"; //script is used to access environmental variable and load API KEY
 import { Card, Button } from "react-bootstrap";
 import { CalculateDistance } from "./CalculateDistance";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
@@ -49,51 +49,65 @@ const Container = ({ isScriptLoaded, isScriptLoadSucceed }) => {
   if (isScriptLoaded && isScriptLoadSucceed) {
     return (
       <div>
-        <Card style={{ width: "50%" }}>
-          <Card.Title>Calculate Distance With Google!</Card.Title>
-          <Card.Body>
-            {/* Start Search */}
-            <LocationSearch
-              handleSelect={handleSelectStart}
-              address={startAddress}
-              setAddress={setStartAddress}
-              coordinates={startCoordinates}
-              setCoordinates={setStartCoordinates}
-            />
-          </Card.Body>
-          <Card.Body>
-            {/* Destination Search */}
-            <LocationSearch
-              handleSelect={handleSelectEnd}
-              address={endAddress}
-              setAddress={setEndAddress}
-              coordinates={endCoordinates}
-              setCoordinates={setEndCoordinates}
-            />
-          </Card.Body>
-          <Button variant="primary">Calculate</Button>
-        </Card>
-        {startCoordinates.lat && endCoordinates.lat ? (
-          <CalculateDistance
-            savedTrips={savedTrips}
-            setSavedTrips={setSavedTrips}
-            originLat={startCoordinates.lat}
-            originLng={startCoordinates.lng}
-            destLat={endCoordinates.lat}
-            destLng={endCoordinates.lng}
-          />
-        ) : null}
+        <div className="container__container">
+          <Card>
+            <Card.Title className="container__Card-title">
+              <h2> Calculate Distance With Google!</h2>
+            </Card.Title>
+            <Card.Body className="container__body">
+              {/* Start Search */}
+              <h3>Starting Location</h3>
+              <LocationSearch
+                handleSelect={handleSelectStart}
+                address={startAddress}
+                setAddress={setStartAddress}
+                coordinates={startCoordinates}
+                setCoordinates={setStartCoordinates}
+              />
+            </Card.Body>
 
-        {/* Diaplay trips saved to localStorage */}
-        <div>
-          <h2>Saved Trips</h2>
+            <Card.Body className="container__body">
+              {/* Destination Search */}
+              <h3>Destination</h3>
+
+              <LocationSearch
+                handleSelect={handleSelectEnd}
+                address={endAddress}
+                setAddress={setEndAddress}
+                coordinates={endCoordinates}
+                setCoordinates={setEndCoordinates}
+              />
+            </Card.Body>
+          </Card>
+          {startCoordinates.lat && endCoordinates.lat ? (
+            <CalculateDistance
+              savedTrips={savedTrips}
+              setSavedTrips={setSavedTrips}
+              originLat={startCoordinates.lat}
+              originLng={startCoordinates.lng}
+              destLat={endCoordinates.lat}
+              destLng={endCoordinates.lng}
+            />
+          ) : null}
+
+          {/* Display trips saved to localStorage */}
           <div>
+            <h2 className="location-search-saved-trips__h2">Saved Trips</h2>
             {savedTrips.map((trip) => {
               return (
-                <div key={trip.id}>
-                  <p>name: {trip.name.name}</p>
-                  <p>Distance: {trip.distance}</p>
-                  <p>Travel Time: {trip.distance}</p>
+                <div
+                  key={trip.id}
+                  className="location-search-saved-trips-container"
+                >
+                  <p className="location-search-saved-trips__p-name">
+                    {trip.name.name}
+                  </p>
+                  <p className="location-search-saved-trips__p">
+                    Distance: {trip.distance}
+                  </p>
+                  <p className="location-search-saved-trips__p">
+                    Travel Time: {trip.distance}
+                  </p>
                 </div>
               );
             })}

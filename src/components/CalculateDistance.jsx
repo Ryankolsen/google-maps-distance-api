@@ -4,7 +4,7 @@ import uuid from "react-uuid";
 
 //Calculates the distance for any trip using google api:
 //https://github.com/ecteodoro/google-distance-matrix
-// import LOCAL_STORAGE_KEY from "./Container";
+import LOCAL_STORAGE_KEY from "./Container";
 
 export const CalculateDistance = (props) => {
   const { savedTrips, setSavedTrips, originLat, originLng, destLat, destLng } =
@@ -63,14 +63,20 @@ export const CalculateDistance = (props) => {
           }}
         />
       ) : null}
-
-      <div>Distance: {currDistance}</div>
-      <div>Travel Time: {currTravelTime}</div>
-
+      <div className="calculate-distance-results-container">
+        <h4>Travel Location and Time: </h4>
+        <div>Distance: {currDistance}</div>
+        <div>Travel Time: {currTravelTime}</div>
+      </div>
       <div>
         <form>
           <p>
-            <label htmlFor="trip-name">Trip Name</label>
+            <label
+              className="calculate-distance-results__label-input"
+              htmlFor="trip-name"
+            >
+              Trip Name
+            </label>
           </p>
           <input
             onChange={(e) => handleChange({ name: e.target.value.toString() })}
