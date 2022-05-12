@@ -3,7 +3,7 @@ import LocationSearch from "./LocationSearch";
 import scriptLoader from "react-async-script-loader"; //script is used to access environmental variable and load API KEY
 import { Card, Button } from "react-bootstrap";
 import { CalculateDistance } from "./CalculateDistance";
-import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
+import { geocodeByAddress, getLatLng } from "react-places-autocomplete"; //https://www.npmjs.com/package/react-places-autocomplete
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
 export const LOCAL_STORAGE_KEY = "distanceApp.storage";
